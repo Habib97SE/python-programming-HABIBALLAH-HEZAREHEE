@@ -1,0 +1,14 @@
+pichu_x_avg: 20.0323743256425
+pichu_y_avg: 31.948325506723382
+pichu_smallest_x: 16.866105280907732
+Pichu_smallest_y  28.88813385482529
+pichu_largest_x 23.6967469082275
+pichu_largest_y  35.40347944144049
+
+
+Pikachu_x_avg 24.09190977342391
+Pikachu_y_avg 35.24823604620258
+pikachu_smallest_x 20.216002852334192
+pikachu_smallest_y  31.418267572382227
+pikachu_largest_x 27.194383786280955
+pikachu_largest_y  40.1471703193656
