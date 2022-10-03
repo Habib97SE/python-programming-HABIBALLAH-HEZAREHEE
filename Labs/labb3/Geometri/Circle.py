@@ -5,23 +5,54 @@ import matplotlib.pyplot as plt
 
 class Circle(Geometri):
     def __init__(self, x: float, y: float, radius: float) -> None:
+        """
+            Initialize the circle with x, y and radius.
+            Parameters:
+                x: float - x coordinate middle of the circle
+                y: float - y coordinate middle of the circle
+                radius: float - radius of the circle
+            Returns:
+                None : None
+        """
         super().__init__(x, y)
         self.radius = radius
 
     @property
     def area(self) -> float:
+        """
+            Returns the area of the circle.
+            Returns:
+                float : area of the circle
+        """
         return math.pi * (self.radius ** 2)
 
     @property
     def perimeter(self) -> float:
+        """
+            Returns the perimeter of the circle.
+            Returns:
+                float : perimeter of the circle
+        """
         return 2 * (math.pi * self.radius)
 
     @property
     def radius(self) -> float:
+        """
+            Returns the radius of the circle.
+            Returns:
+                float : radius of the circle
+        """
         return self._radius
 
     @radius.setter
     def radius(self, value: float) -> None:
+        """
+            Sets the radius of the circle.
+            Parameters:
+                value: float - radius of the circle
+            Returns:
+                None : None
+        """
         if isinstance(value, int):
             value = float(value)
         if not isinstance(value, float):
@@ -53,6 +84,14 @@ class Circle(Geometri):
         return self.area() >= other.area()
 
     def translate(self, x: float, y: float) -> None:
+        """
+            Translates the circle with x and y. If x or y is not a float or int it raises a TypeError. 
+            Parameters:
+                x: float - x coordinate to translate the circle
+                y: float - y coordinate to translate the circle
+            Returns:
+                None : None
+        """
         if isinstance(x, int):
             x = float(x)
         if isinstance(y, int):
@@ -63,9 +102,12 @@ class Circle(Geometri):
         self._y += y
 
     def is_unit_circle(self) -> bool:
-        if self.radius == 1:
-            return True
-        return False
+        """
+            Returns True if the circle is a unit circle.
+            Returns:
+                bool : True if the circle is a unit circle
+        """
+        return self.radius == 1
 
     def is_inside(self, x: float, y: float) -> bool:
         """
@@ -79,6 +121,9 @@ class Circle(Geometri):
 
     # Draw the circle on plot
     def draw(self) -> None:
+        """
+            Draws the circle on a plot.
+        """
         fig, ax = plt.subplots()
         circle = plt.Circle((self.x, self.y), self.radius, color="r")
         ax.add_artist(circle)

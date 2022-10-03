@@ -5,27 +5,51 @@ import matplotlib.pyplot as plt
 
 class Sphere(Geometri):
     def __init__(self, x: float, y: float, radius: float) -> None:
+        """
+            Initialize the sphere with x, y and radius. 
+            Parameters:
+                x: float - x coordinate middle of the sphere
+                y: float - y coordinate middle of the sphere
+                radius: float - radius of the sphere
+            Returns:
+                None : None
+        """
         super().__init__(x, y)
         self.radius = radius
 
     @property
     def area(self) -> float:
+        """
+            Returns the area of the sphere.
+        """
         return 4 * math.pi * (self.radius ** 2)
 
     @property
     def perimeter(self) -> float:
+        """
+            Returns the perimeter of the sphere.
+        """
         return 2 * math.pi * self.radius
 
     @property
     def volume(self) -> float:
+        """
+            Returns the volume of the sphere.
+        """
         return (4/3) * math.pi * (self.radius ** 3)
 
     @property
     def radius(self) -> float:
+        """
+            Returns the radius of the sphere.
+        """
         return self._radius
 
     @radius.setter
     def radius(self, value: float) -> None:
+        """
+            Sets the radius of the sphere.
+        """
         if isinstance(value, int):
             value = float(value)
         if not isinstance(value, float):
@@ -57,6 +81,14 @@ class Sphere(Geometri):
         return self.volume >= other.volume
 
     def translate(self, x: float, y: float) -> None:
+        """
+            Translates the sphere with x and y. 
+            Parameters:
+                x: float - x coordinate
+                y: float - y coordinate
+            Returns:
+                None : None
+        """
         if isinstance(x, int):
             x = float(x)
         if isinstance(y, int):
@@ -79,6 +111,9 @@ class Sphere(Geometri):
 
     # Draw the sphere on plot
     def draw(self) -> None:
+        """
+            Draws the sphere on plot.
+        """
         fig, ax = plt.subplots()
         circle = plt.Circle((self.x, self.y), self.radius, color="r")
         ax.add_artist(circle)

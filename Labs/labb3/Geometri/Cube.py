@@ -4,6 +4,17 @@ import matplotlib.pyplot as plt
 
 class Cube(Geometri):
     def __init__(self, x: float, y: float, width, height, length) -> None:
+        """
+            Initialize the cube with x, y, width, height and length.
+            Parameters:
+                x: float - x coordinate middle of the cube
+                y: float - y coordinate middle of the cube
+                width: float - width of the cube
+                height: float - height of the cube
+                length: float - length of the cube
+            Returns:
+                None : None
+        """
         super().__init__(x, y)
         self.width = width
         self.height = height
@@ -11,22 +22,37 @@ class Cube(Geometri):
 
     @property
     def area(self) -> float:
+        """
+            Returns the area of the cube.
+        """
         return 6 * (self.width * self.height)
 
     @property
     def perimeter(self) -> float:
+        """
+            Returns the perimeter of the cube.
+        """
         return 12 * self.width
 
     @property
     def volume(self) -> float:
+        """
+            Returns the volume of the cube.
+        """
         return self.width * self.height * self.length
 
     @property
     def width(self) -> float:
+        """
+            Returns the width of the cube.
+        """
         return self._width
 
     @width.setter
     def width(self, value: float) -> None:
+        """
+            Sets the width of the cube.
+        """
         if isinstance(value, int):
             value = float(value)
         if not isinstance(value, float):
@@ -35,10 +61,16 @@ class Cube(Geometri):
 
     @property
     def height(self) -> float:
+        """
+            Returns the height of the cube.
+        """
         return self._height
 
     @height.setter
     def height(self, value: float) -> None:
+        """
+            Sets the height of the cube.
+        """
         if isinstance(value, int):
             value = float(value)
         if not isinstance(value, float):
@@ -47,10 +79,16 @@ class Cube(Geometri):
 
     @property
     def length(self) -> float:
+        """
+            Returns the length of the cube.
+        """
         return self._length
 
     @length.setter
     def length(self, value: float) -> None:
+        """
+            Sets the length of the cube.
+        """
         if isinstance(value, int):
             value = float(value)
         if not isinstance(value, float):
@@ -82,6 +120,14 @@ class Cube(Geometri):
         return self.volume >= other.volume
 
     def translate(self, x: float, y: float) -> None:
+        """
+            Translates the cube with x and y. 
+            Parameters:
+                x: float - x coordinate
+                y: float - y coordinate
+            Returns:
+                None : None
+        """
         if isinstance(x, int):
             x = float(x)
         if isinstance(y, int):
@@ -104,6 +150,9 @@ class Cube(Geometri):
 
     # Draw the cube on plot
     def draw(self) -> None:
+        """
+            Draws the cube on plot.
+        """
         fig, ax = plt.subplots()
         cube = plt.Rectangle((self.x, self.y), self.width,
                              self.height, color="r")

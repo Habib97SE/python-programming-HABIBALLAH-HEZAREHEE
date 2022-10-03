@@ -3,6 +3,11 @@ from Geometri import Geometri, Rectangle, Circle, Cube, Sphere
 
 
 class TestGeometri(unittest.TestCase):
+    """ 
+       This class tests all methods, properties and attributes of the classes: 
+         Geometri, Rectangle, Circle, Cube and Sphere.
+    """
+
     def test_geometri_x(self):
         geometri = Geometri.Geometri(x=0, y=0)
         self.assertEqual(geometri.x, 0)
