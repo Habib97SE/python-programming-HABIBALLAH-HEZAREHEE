@@ -1,8 +1,8 @@
-from .Geometri import Geometri
+from .Geometry import Geometry
 import matplotlib.pyplot as plt
 
 
-class Rectangle(Geometri):
+class Rectangle(Geometry):
     """
         This class represents a rectangle. The rectangle has a width and a height and middle point x and y. 
         The rectangle can be translated and can check if a point is inside the rectangle.

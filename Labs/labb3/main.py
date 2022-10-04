@@ -1,7 +1,11 @@
-from Geometri import Rectangle, Circle, Cube, Sphere
+from turtle import circle
+from Geometries import Rectangle, Circle, Cube, Sphere
 
 
 def main() -> None:
+
+    circle3 = Circle.Circle(1, 1, 2)
+    print("Circle tre: ", circle3.is_inside(3, 3))
 
     cirkel1 = Circle.Circle(x=0, y=0, radius=1)  # enhetscirkel
 

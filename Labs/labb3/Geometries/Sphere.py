@@ -1,9 +1,9 @@
-from .Geometri import Geometri
+from .Geometry import Geometry
 import math
 import matplotlib.pyplot as plt
 
 
-class Sphere(Geometri):
+class Sphere(Geometry):
     def __init__(self, x: float, y: float, radius: float) -> None:
         """
             Initialize the sphere with x, y and radius. 

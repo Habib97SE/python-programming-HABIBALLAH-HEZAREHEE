@@ -1,8 +1,8 @@
-from .Geometri import Geometri
+from .Geometry import Geometry
 import matplotlib.pyplot as plt
 
 
-class Cube(Geometri):
+class Cube(Geometry):
     def __init__(self, x: float, y: float, width, height, length) -> None:
         """
             Initialize the cube with x, y, width, height and length.

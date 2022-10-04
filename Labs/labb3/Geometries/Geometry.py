@@ -1,10 +1,10 @@
 import math
 
 
-class Geometri:
+class Geometry:
     def __init__(self, x: float, y: float) -> None:
         """
-            Initialize the geometri with x and y.
+            Initialize the geometry with x and y.
             Parameters:
                 x: float - x coordinate middle of the geometri
                 y: float - y coordinate middle of the geometri

@@ -1,9 +1,14 @@
-from .Geometri import Geometri
+from typing import Type
+from .Geometry import Geometry
 import math
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 
 
-class Circle(Geometri):
+class Circle(Geometry):
+    """
+        This class will handle circles calculations like perimiter, area and etc. 
+    """
+
     def __init__(self, x: float, y: float, radius: float) -> None:
         """
             Initialize the circle with x, y and radius.
@@ -115,9 +120,16 @@ class Circle(Geometri):
             and x and y are less than radius.
             otherwise returns False
         """
-        if x >= self.x and x <= self.radius:
-            return True
-        return False
+        if isinstance(x, int):
+            x = float(x)
+        if isinstance(y, int):
+            y = float(y)
+
+        if not isinstance(x, float) and isinstance(y, float):
+            raise TypeError("Both x and y should be of type float.")
+
+        # Check if x and y is inside the circle or not
+        return x > self.x and x < self.radius and y > self.y and y < self.radius
 
     # Draw the circle on plot
     def draw(self) -> None:
