@@ -2,6 +2,7 @@ from typing import Type
 from .Geometry import Geometry
 import math
 from matplotlib import pyplot as plt
+from matplotlib.patches import Circle as circ
 
 
 class Circle(Geometry):
@@ -137,8 +138,7 @@ class Circle(Geometry):
             Draws the circle on a plot.
         """
         fig, ax = plt.subplots()
-        circle = plt.Circle((self.x, self.y), self.radius, color="r")
-        ax.add_artist(circle)
-        ax.set_xlim(0, 10)
-        ax.set_ylim(0, 10)
+        ax.margins(0.2, 0.2)
+        ax.add_patch(circ([0, 0], self._radius))
+        plt.title(f"Circle with radius {self._radius}")
         plt.show()

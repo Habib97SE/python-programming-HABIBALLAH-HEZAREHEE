@@ -1,24 +1,27 @@
 from .Geometry import Geometry
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+import numpy as np
 
 
 class Cube(Geometry):
-    def __init__(self, x: float, y: float, width, height, length) -> None:
+    def __init__(self, x: float, y: float, z: float, length: float, height: float, depth: float) -> None:
         """
             Initialize the cube with x, y, width, height and length.
             Parameters:
                 x: float - x coordinate middle of the cube
                 y: float - y coordinate middle of the cube
-                width: float - width of the cube
-                height: float - height of the cube
-                length: float - length of the cube
+                length: float - length of the cube (x)
+                height: float - height of the cube (y)
+                depth: float - depth of the cube (z)
             Returns:
                 None : None
         """
         super().__init__(x, y)
-        self.width = width
-        self.height = height
+        self.z = z
         self.length = length
+        self.height = height
+        self.depth = depth
 
     @property
     def area(self) -> float:
@@ -42,14 +45,14 @@ class Cube(Geometry):
         return self.width * self.height * self.length
 
     @property
-    def width(self) -> float:
+    def length(self) -> float:
         """
             Returns the width of the cube.
         """
-        return self._width
+        return self._length
 
-    @width.setter
-    def width(self, value: float) -> None:
+    @length.setter
+    def length(self, value: float) -> None:
         """
             Sets the width of the cube.
         """
@@ -57,7 +60,19 @@ class Cube(Geometry):
             value = float(value)
         if not isinstance(value, float):
             raise TypeError("width must be a float.")
-        self._width = value
+        self._length = value
+
+    @property
+    def z(self):
+        return self._z
+
+    @z.setter
+    def z(self, value):
+        if isinstance(value, int):
+            value = float(value)
+        if not isinstance(value, float):
+            raise TypeError("z must be a float.")
+        self._z = value
 
     @property
     def height(self) -> float:
@@ -78,14 +93,14 @@ class Cube(Geometry):
         self._height = value
 
     @property
-    def length(self) -> float:
+    def depth(self) -> float:
         """
             Returns the length of the cube.
         """
-        return self._length
+        return self._depth
 
-    @length.setter
-    def length(self, value: float) -> None:
+    @depth.setter
+    def depth(self, value: float) -> None:
         """
             Sets the length of the cube.
         """
@@ -93,7 +108,7 @@ class Cube(Geometry):
             value = float(value)
         if not isinstance(value, float):
             raise TypeError("length must be a float.")
-        self._length = value
+        self._depth = value
 
     def __str__(self) -> str:
         return f"({self.x}, {self.y}, {self.width}, {self.height}, {self.length})"
@@ -119,12 +134,13 @@ class Cube(Geometry):
     def __ge__(self, other) -> bool:
         return self.volume >= other.volume
 
-    def translate(self, x: float, y: float) -> None:
+    def translate(self, x: float, y: float, z: float) -> None:
         """
-            Translates the cube with x and y. 
+            Translates the cube with x, y and z. 
             Parameters:
                 x: float - x coordinate
                 y: float - y coordinate
+                z: float - z coordinate
             Returns:
                 None : None
         """
@@ -132,31 +148,42 @@ class Cube(Geometry):
             x = float(x)
         if isinstance(y, int):
             y = float(y)
-        if not isinstance(x, float) or not isinstance(y, float):
+        if isinstance(z, int):
+            z = float(z)
+        if not isinstance(x, float) or not isinstance(y, float) or not isinstance(z, float):
             raise TypeError("x and y should be of type float.")
         self._x += x
         self._y += y
+        self._z += z
 
-    def is_inside(self, x: float, y: float) -> bool:
+    def is_inside(self, x: float, y: float, z: float) -> bool:
         """
             Returns True if x and y is greater than self._x and self._y
             and x and y are less than width and height.
             otherwise returns False
         """
-        if x >= self.x and x <= self.width:
-            if y >= self.y and y <= self.height:
-                return True
-        return False
+        if not (self._x - (self._length / 2)) < x or not (self._x + (self._length / 2)) > x:
+            return False
+        if not (self._y - (self._height / 2)) < y or not (self._y + (self._height / 2)) > y:
+            return False
+        if not (self._z - (self._depth / 2)) < z or not (self._z + (self._depth / 2)) > z:
+            return False
+        return True
 
     # Draw the cube on plot
+
     def draw(self) -> None:
         """
             Draws the cube on plot.
+
+            source: https://www.oraask.com/wiki/how-to-draw-3d-cube-using-matplotlib
         """
-        fig, ax = plt.subplots()
-        cube = plt.Rectangle((self.x, self.y), self.width,
-                             self.height, color="r")
-        ax.add_artist(cube)
-        ax.set_xlim(0, 10)
-        ax.set_ylim(0, 10)
+        sides = np.array(
+            [int(self._length), int(self._height), int(self._depth)])
+        data = np.ones(sides)
+        fig = plt.figure(figsize=(9, 9))
+        ax = fig.add_subplot(111, projection='3d')
+        ax.voxels(data, facecolors="red")
+        plt.title(
+            f"Cube with dimension: {self._length}, {self._height} and {self._depth}")
         plt.show()

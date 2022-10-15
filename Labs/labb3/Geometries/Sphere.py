@@ -1,6 +1,9 @@
 from .Geometry import Geometry
 import math
+import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib import cm
+from matplotlib import animation
 
 
 class Sphere(Geometry):
@@ -104,19 +107,28 @@ class Sphere(Geometry):
             and x and y are less than width and height.
             otherwise returns False
         """
-        if x >= self.x and x <= self.radius:
-            if y >= self.y and y <= self.radius:
-                return True
-        return False
+        if not x >= self.x or not x <= self.radius:
+            return False
+        if not y >= self.y or not y <= self.radius:
+            return False
+        return True
 
     # Draw the sphere on plot
     def draw(self) -> None:
         """
             Draws the sphere on plot.
+
+            Source: https://www.youtube.com/watch?v=DV4GjHH-fvc&ab_channel=SkillUpwithGenie
         """
-        fig, ax = plt.subplots()
-        circle = plt.Circle((self.x, self.y), self.radius, color="r")
-        ax.add_artist(circle)
-        ax.set_xlim(0, 10)
-        ax.set_ylim(0, 10)
+        fig = plt.figure()
+        ax = plt.axes(projection="3d")
+        u = np.linspace(0, 2*np.pi, 100)
+        v = np.linspace(0, np.pi, 100)
+        r = self._radius
+
+        x = r * np.outer(np.cos(u), np.sin(v))
+        y = r * np.outer(np.sin(u), np.sin(v))
+        z = r * np.outer(np.ones(np.size(u)), np.cos(v))
+        ax.plot_surface(x, y, z, rstride=5, cstride=5)
+        plt.title(f"Sphere with radius {self._radius}")
         plt.show()

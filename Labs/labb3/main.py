@@ -1,9 +1,7 @@
-from turtle import circle
 from Geometries import Rectangle, Circle, Cube, Sphere
 
 
 def main() -> None:
-
     circle3 = Circle.Circle(1, 1, 2)
     print("Circle tre: ", circle3.is_inside(3, 3))
 

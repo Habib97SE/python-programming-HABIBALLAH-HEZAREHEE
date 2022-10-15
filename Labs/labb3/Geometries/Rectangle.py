@@ -1,5 +1,7 @@
 from .Geometry import Geometry
 import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.patches import Rectangle as rec
 
 
 class Rectangle(Geometry):
@@ -101,5 +103,17 @@ class Rectangle(Geometry):
         return False
 
     def draw(self) -> None:
-        plt.plot(self.x, self.y, "ro")
+        """
+            Draw rectangle on chart
+
+            Source: https://www.statology.org/matplotlib-rectangle/
+        """
+        x_start = (self._width / 2) - self._x
+        y_start = (self._height / 2) - self._y
+        fig, ax = plt.subplots()
+        ax.margins(0.5, 0.5)
+        ax.add_patch(rec((x_start, y_start), self._width, self._height))
+        plt.title(
+            f"Rectangle with width {self._width} and height {self._height}")
+
         plt.show()
