@@ -111,10 +111,10 @@ class Cube(Geometry):
         self._depth = value
 
     def __str__(self) -> str:
-        return f"({self.x}, {self.y}, {self.width}, {self.height}, {self.length})"
+        return f"({self.x}, {self.y}, {self.length}, {self.height}, {self.depth})"
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({self.x}, {self.y}, {self.width}, {self.height}, {self.length})"
+        return f"{self.__class__.__name__}({self.x}, {self.y}, {self.length}, {self.height}, {self.depth})"
 
     def __eq__(self, other) -> bool:
         return self.volume == other.volume

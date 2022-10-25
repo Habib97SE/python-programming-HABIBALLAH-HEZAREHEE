@@ -1,4 +1,5 @@
 import math
+from typing import Tuple, Any
 
 
 class Geometry:
@@ -78,7 +79,7 @@ class Geometry:
         self.x += x
         self.y += y
 
-    def is_type_float(*args) -> list:
+    def is_type_float(*args) -> bool:
         """
             Checks if the arguments are of type float.
             Parameters:
@@ -91,7 +92,7 @@ class Geometry:
                 return False
         return True
 
-    def int_to_float(*args) -> list:
+    def int_to_float(*args) -> tuple[Any, ...]:
         """
             Converts all arguments of type int to type float.
             Parameters:

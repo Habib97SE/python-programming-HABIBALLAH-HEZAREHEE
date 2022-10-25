@@ -2,8 +2,6 @@ from .Geometry import Geometry
 import math
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib import cm
-from matplotlib import animation
 
 
 class Sphere(Geometry):
